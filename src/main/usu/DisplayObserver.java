@@ -12,7 +12,8 @@ public class DisplayObserver implements Observer {
         if (obs instanceof Stock) {
             Stock stock = (Stock) obs;
 //            System.out.println(stock.getTickerMessage().getSymbol());
-            System.out.println(stock.getTickerMessage());
+//            System.out.println(stock.getTickerMessage());
+            System.out.println(stock.getTickerMessage().getSymbol() + " " + stock.getCurrentPriceHistory());
         }
     }
 }
