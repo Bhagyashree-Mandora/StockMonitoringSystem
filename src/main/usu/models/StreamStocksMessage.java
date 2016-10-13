@@ -1,4 +1,6 @@
-package main.usu;
+package main.usu.models;
+
+import main.usu.utils.HelperFunctions;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;

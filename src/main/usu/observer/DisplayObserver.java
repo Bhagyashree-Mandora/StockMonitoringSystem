@@ -1,11 +1,11 @@
-package main.usu;
+package main.usu.observer;
+
+import main.usu.Stock;
 
 import java.util.Observable;
 import java.util.Observer;
 
 public class DisplayObserver implements Observer {
-
-//    Observable observable;
 
     public void watch(Stock stock){
         stock.addObserver(this);

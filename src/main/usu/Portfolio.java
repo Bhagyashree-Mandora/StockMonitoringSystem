@@ -1,5 +1,10 @@
 package main.usu;
 
+import lombok.Getter;
+import main.usu.models.TickerMessage;
+import main.usu.observer.DisplayGraph;
+import main.usu.observer.DisplayObserver;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +13,7 @@ import java.util.List;
 public class Portfolio {
 
     private static final String FILE_NAME = "portfolio.txt";
+    @Getter
     private HashMap<String,Stock> stocks = new HashMap<>();
     private DisplayObserver displayObserver = new DisplayGraph();
 

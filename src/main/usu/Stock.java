@@ -2,6 +2,7 @@ package main.usu;
 
 import com.google.common.collect.Lists;
 import lombok.Getter;
+import main.usu.models.TickerMessage;
 
 import java.util.List;
 import java.util.Observable;

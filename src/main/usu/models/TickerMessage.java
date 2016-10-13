@@ -1,6 +1,7 @@
-package main.usu;
+package main.usu.models;
 
 import lombok.ToString;
+import main.usu.utils.HelperFunctions;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

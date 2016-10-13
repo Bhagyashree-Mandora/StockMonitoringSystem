@@ -1,7 +1,6 @@
 package test.usu;
 
 import main.usu.Portfolio;
-import main.usu.TickerMessage;
 import org.junit.*;
 
 import java.io.*;
@@ -70,6 +69,17 @@ public class PortfolioTest {
         actual = portfolio.getSymbolsfromFile();
 
         Assert.assertTrue(actual.equals(testCompanies));
+    }
+
+    @Test
+    public void addsStock() {
+        String symbol = "MMM";
+
+        Portfolio portfolio = new Portfolio();
+        portfolio.addSymbol(symbol);
+
+        Assert.assertTrue(!portfolio.getStocks().isEmpty());
+        Assert.assertTrue(portfolio.getStocks().containsKey("MMM"));
     }
 
     @AfterClass
