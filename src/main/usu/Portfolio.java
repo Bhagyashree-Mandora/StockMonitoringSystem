@@ -8,15 +8,13 @@ import java.util.List;
 public class Portfolio {
 
     private static final String FILE_NAME = "portfolio.txt";
-    private List<String> companies = new ArrayList<>();
-    private List<String> symbols = new ArrayList<>();
     private HashMap<String,Stock> stocks = new HashMap<>();
-    DisplayObserver displayObserver = new DisplayObserver();
+    private DisplayObserver displayObserver = new DisplayGraph();
 
     public Portfolio(){
-        this.symbols = getSymbols();
+        List<String> symbols = getSymbolsfromFile();
         for (String symbol : symbols){
-            addCompany(symbol);
+            addSymbol(symbol);
         }
     }
 
@@ -24,8 +22,8 @@ public class Portfolio {
         PrintWriter writer;
         try {
             writer = new PrintWriter(FILE_NAME, "UTF-8");
-            for (String company : companies) {
-                writer.println(company);
+            for (String symbol : stocks.keySet()) {
+                writer.println(symbol);
             }
             writer.close();
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
@@ -33,25 +31,25 @@ public class Portfolio {
         }
     }
 
-    public List<String> getSymbols() {
+    public List<String> getSymbolsfromFile() {
         String line;
-        List<String> loadCompanies = new ArrayList<>();
+        List<String> loadSymbols = new ArrayList<>();
 
         try {
             FileReader fileReader = new FileReader(FILE_NAME);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             while ((line = bufferedReader.readLine()) != null) {
-                loadCompanies.add(line);
+                loadSymbols.add(line);
             }
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return loadCompanies;
+        return loadSymbols;
     }
 
-    public void addCompany(String ticker) {
+    public void addSymbol(String ticker) {
         Stock stock = new Stock();
         stock.addObserver(displayObserver);
         stocks.put(ticker, stock);
@@ -62,16 +60,4 @@ public class Portfolio {
             stocks.get(tickerMessage.getSymbol()).update(tickerMessage);
         }
     }
-
-    public static void main(String[] args) {
-        Portfolio portfolio = new Portfolio();
-        portfolio.addCompany("AAN");
-        TickerMessage tickerMessage = new TickerMessage();
-        tickerMessage.setSymbol("AAN");
-        tickerMessage.setCurrentPrice(12);
-        portfolio.update(tickerMessage);
-//        portfolio.update("AMZN");
-//        portfolio.update("AMZN1");
-    }
-
 }
