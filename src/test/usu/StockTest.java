@@ -25,4 +25,21 @@ public class StockTest {
 
         Assert.assertNotNull(stock.getTickerMessage());
     }
+
+    @Test
+    public void shouldUdatePriceHistoryWithNewTickerMessage() {
+        Stock stock = new Stock();
+        TickerMessage message = new TickerMessage();
+        message.setCurrentPrice(100);
+
+        TickerMessage messageTwo = new TickerMessage();
+        messageTwo.setCurrentPrice(101);
+
+        stock.update(message);
+        stock.update(messageTwo);
+
+        Assert.assertEquals(2, stock.getCurrentPriceHistory().size());
+        Assert.assertEquals(new Integer(100), stock.getCurrentPriceHistory().get(0));
+        Assert.assertEquals(new Integer(101), stock.getCurrentPriceHistory().get(1));
+    }
 }

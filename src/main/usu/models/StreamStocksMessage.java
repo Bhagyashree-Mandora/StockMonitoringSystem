@@ -63,7 +63,7 @@ public class StreamStocksMessage {
                     byte[] tmp = new byte[6];
                     buffer.get(tmp);
                     String symbol = new String(tmp, 0, 6, StandardCharsets.US_ASCII);
-                    if (symbol != null && !symbol.trim().isEmpty()) {
+                    if (!symbol.trim().isEmpty()) {
                         message.Add(symbol.trim());
                     } else {
                         message = null;

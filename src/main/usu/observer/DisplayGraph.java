@@ -1,6 +1,9 @@
 package main.usu.observer;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
+import lombok.Getter;
+import lombok.Setter;
 import main.usu.Stock;
 import main.usu.models.TickerMessage;
 import main.usu.observer.DisplayObserver;
@@ -27,9 +30,10 @@ public class DisplayGraph extends DisplayObserver {
     private JButton button2;
     private JRadioButton radioButton2;
     private JCheckBox checkBox1;
+    @Setter
     private JTable table1;
     private JButton showGraphButton;
-    List<String> selectedSymbols = Lists.newArrayList();
+    public List<String> selectedSymbols = Lists.newArrayList();
 
     @Override
     public void update(Observable obs, Object arg) {
@@ -40,7 +44,7 @@ public class DisplayGraph extends DisplayObserver {
         }
     }
 
-    private void updatePortfolioTable(TickerMessage tickerMessage) {
+    public void updatePortfolioTable(TickerMessage tickerMessage) {
         DefaultTableModel model = (DefaultTableModel) table1.getModel();
         boolean isRowPresent = false;
         for (int i = 0; i < model.getRowCount(); i++) {
